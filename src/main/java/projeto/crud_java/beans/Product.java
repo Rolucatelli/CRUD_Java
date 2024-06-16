@@ -2,7 +2,7 @@ package projeto.crud_java.beans;
 
 import java.sql.*;
 
-public class Product extends Object{
+public class Product {
 
     private String name;
     private String shortDescription;
@@ -15,17 +15,19 @@ public class Product extends Object{
     public Product(String name, String shortDescription, String brand, String category, double listPrice, double cost) throws IllegalArgumentException {
         if (name == null)
             throw new IllegalArgumentException("Name can't be null");
+        if (listPrice < 0)
+            throw new IllegalArgumentException("Name can't be null");
 
         this.name = name;
-        this.shortDescription = shortDescription;
-        this.brand = brand;
-        this.category = category;
         this.listPrice = listPrice;
-        this.cost = cost;
+        this.shortDescription = (shortDescription == null) ? "None" : shortDescription;
+        this.brand = (brand == null) ? "Unkown" : brand;
+        this.category = (category == null) ? "Unkown" : category;
+        this.cost = (cost < 0) ? -1 : cost;
     }
 
     public Product(String name, double listPrice) {
-        this(name, "None", "Unknown", "Unknown", listPrice, -1.0);
+        this(name, null, null, null, listPrice, -1.0);
     }
 
     public Product(String name, String shortDescription, double listPrice) {
