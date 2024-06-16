@@ -31,6 +31,7 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
             stage.setTitle("Sistema");
             stage.setScene(new Scene(root));
+            stage.getIcons().add(new Image("file:src/main/java/projeto/IconeCRUD.png"));
             stage.show();
 
 

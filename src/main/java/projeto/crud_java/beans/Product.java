@@ -1,4 +1,4 @@
-package projeto.crud_java;
+package projeto.crud_java.beans;
 
 import java.sql.*;
 

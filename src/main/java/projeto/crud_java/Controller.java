@@ -7,7 +7,7 @@ import javafx.scene.shape.Circle;
 public class Controller {
 
 //    @FXML
-
+    //TODO: Criar a ponte entre os métodos das outras classes para elementos da UI
 
 
 }
