@@ -1,17 +1,26 @@
 package projeto.crud_java;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import projeto.crud_java.beans.Product;
 import projeto.crud_java.dbConection.DataBaseUtility;
 import projeto.crud_java.tables.ProductController;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
 
 
     @FXML
@@ -34,6 +43,9 @@ public class Controller {
     public TableColumn<Product, String> categoryCol = new TableColumn<>();
     public TableColumn<Product, Double> listPriceCol = new TableColumn<>();
     public TableColumn<Product, Double> costCol = new TableColumn<>();
+
+    private ObservableList<Product> list = FXCollections.observableArrayList(loadTable());
+
 
     public Label errorMessage;
     public Label nameErrorMessage;
@@ -135,15 +147,7 @@ public class Controller {
 
     public void search() {
         try {
-            if (searchField.getText().isEmpty()) {
-                table.getColumns().add(nameCol);
-                table.getColumns().add(shortDescriptionCol);
-                table.getColumns().add(brandCol);
-                table.getColumns().add(categoryCol);
-                table.getColumns().add(listPriceCol);
-                table.getColumns().add(costCol);
-                loadTable();
-            } else {
+            if (!searchField.getText().isEmpty()) {
                 Product product = ProductController.consult(searchField.getText());
                 table.getItems().clear();
                 table.getItems().add(product);
@@ -154,11 +158,12 @@ public class Controller {
         }
     }
 
-    public void loadTable() {
+    public LinkedList<Product> loadTable() {
         try {
-            table.getItems().addAll(DataBaseUtility.getAllProducts());
+            return DataBaseUtility.getAllProducts();
         } catch (SQLException e) {
             errorMessage.setVisible(true);
+            return null;
         }
     }
 
@@ -170,4 +175,29 @@ public class Controller {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        nameCol.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        shortDescriptionCol.setCellValueFactory(new PropertyValueFactory<Product, String>("shortDescription"));
+        brandCol.setCellValueFactory(new PropertyValueFactory<Product, String>("brand"));
+        categoryCol.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
+        listPriceCol.setCellValueFactory(new PropertyValueFactory<Product, Double>("listPrice"));
+        costCol.setCellValueFactory(new PropertyValueFactory<Product, Double>("cost"));
+        table.setItems(list);
+        table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Product>() {
+            @Override
+            public void changed(ObservableValue<? extends Product> observableValue, Product product, Product t1) {
+
+                prodName.setText(t1.getName());
+                shortDescription.setText(t1.getShortDescription());
+                brand.setText(t1.getBrand());
+                category.setText(t1.getCategory());
+                listPrice.setText("" + t1.getListPrice());
+                cost.setText("" + t1.getCost());
+
+            }
+        });
+
+    }
 }

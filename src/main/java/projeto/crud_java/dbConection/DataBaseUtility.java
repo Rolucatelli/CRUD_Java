@@ -82,6 +82,7 @@ public class DataBaseUtility {
         }
         rs.close();
         conn.close();
+        System.out.println(list);
         return list;
     }
 }

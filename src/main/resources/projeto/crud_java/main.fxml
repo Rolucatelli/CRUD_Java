@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="1000.0" style="-fx-background-color: #e5f3ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto.crud_java.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #e5f3ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto.crud_java.Controller">
    <children>
-      <TableView fx:id="table" layoutX="335.0" layoutY="97.0" prefHeight="431.0" prefWidth="613.0">
+      <TableView fx:id="table" fixedCellSize="51.0" layoutX="335.0" layoutY="97.0" prefHeight="510.0" prefWidth="910.0">
         <columns>
-          <TableColumn fx:id="nameCol" prefWidth="75.0" style="-fx-background-color: #0099dd;" text="Name" />
-          <TableColumn fx:id="shortDescriptionCol" prefWidth="140.0" style="-fx-background-color: #00bbdd;" text="Short description" />
-            <TableColumn fx:id="brandCol" prefWidth="79.0" style="-fx-background-color: #0099dd;" text="Brand" />
-            <TableColumn fx:id="categoryCol" prefWidth="114.0" style="-fx-background-color: #00bbdd;" text="Category" />
-            <TableColumn fx:id="listPriceCol" prefWidth="109.0" style="-fx-background-color: #0099dd;" text="List price" />
-            <TableColumn fx:id="costCol" prefWidth="95.0" style="-fx-background-color: #00bbdd;" text="Cost (US$)" />
+          <TableColumn fx:id="nameCol" prefWidth="136.0" style="-fx-color: #0099dd;" text="Name" />
+          <TableColumn fx:id="shortDescriptionCol" prefWidth="336.0" style="-fx-color: #00bbdd;" text="Short description" />
+            <TableColumn fx:id="brandCol" prefWidth="145.0" style="-fx-color: #0099dd;" text="Brand" />
+            <TableColumn fx:id="categoryCol" prefWidth="115.0" style="-fx-color: #00bbdd;" text="Category" />
+            <TableColumn fx:id="listPriceCol" prefWidth="91.0" style="-fx-color: #0099dd;" text="List price" />
+            <TableColumn fx:id="costCol" prefWidth="86.0" style="-fx-color: #00bbdd;" text="Cost (US$)" />
         </columns>
       </TableView>
       <TextField fx:id="prodName" layoutX="150.0" layoutY="150.0" />
@@ -45,28 +45,28 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField fx:id="searchField" layoutX="335.0" layoutY="51.0" promptText="Product Name" />
-      <Button contentDisplay="CENTER" layoutX="500.0" layoutY="51.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: #00aaff;" text="Search" textFill="#fafafa">
+      <TextField fx:id="searchField" layoutX="335.0" layoutY="51.0" prefHeight="25.0" prefWidth="265.0" promptText="Product Name" />
+      <Button contentDisplay="CENTER" layoutX="614.0" layoutY="51.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: #00aaff;" text="Search" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button contentDisplay="CENTER" layoutX="466.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="&lt;&lt;" textFill="#fafafa">
+      <Button contentDisplay="CENTER" layoutX="614.0" layoutY="641.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="&lt;&lt;" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button contentDisplay="CENTER" layoutX="541.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="1" textFill="#fafafa">
+      <Button contentDisplay="CENTER" layoutX="689.0" layoutY="641.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="1" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button contentDisplay="CENTER" layoutX="616.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="2" textFill="#fafafa">
+      <Button contentDisplay="CENTER" layoutX="764.0" layoutY="641.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="2" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button contentDisplay="CENTER" layoutX="691.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="3" textFill="#fafafa">
+      <Button contentDisplay="CENTER" layoutX="839.0" layoutY="641.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="3" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button contentDisplay="CENTER" layoutX="766.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="&gt;&gt;" textFill="#fafafa">
+      <Button contentDisplay="CENTER" layoutX="914.0" layoutY="641.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #00aaff;" text="&gt;&gt;" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
