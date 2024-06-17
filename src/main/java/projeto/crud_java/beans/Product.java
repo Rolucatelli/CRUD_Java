@@ -11,12 +11,11 @@ public class Product {
     private double listPrice;
     private double cost;
 
-
     public Product(String name, String shortDescription, String brand, String category, double listPrice, double cost) throws IllegalArgumentException {
-        if (name == null)
-            throw new IllegalArgumentException("Name can't be null");
+        if (name == null || name.isEmpty())
+            throw new IllegalArgumentException("Name can't be null", new Throwable("name == null"));
         if (listPrice < 0)
-            throw new IllegalArgumentException("Name can't be null");
+            throw new IllegalArgumentException("List Price can't be negative", new Throwable("listPrice < 0"));
 
         this.name = name;
         this.listPrice = listPrice;
@@ -26,20 +25,20 @@ public class Product {
         this.cost = (cost < 0) ? -1 : cost;
     }
 
-    public Product(String name, double listPrice) {
-        this(name, null, null, null, listPrice, -1.0);
-    }
-
-    public Product(String name, String shortDescription, double listPrice) {
-        this(name, shortDescription, "Unknown", "Unknown", listPrice, -1.0);
+    public Product(String name, String shortDescription, String brand, String category, double listPrice) {
+        this(name, shortDescription, brand, category, listPrice, -1.0);
     }
 
     public Product(String name, String shortDescription, String brand, double listPrice) {
-        this(name, shortDescription, brand, "Unknown", listPrice, -1.0);
+        this(name, shortDescription, brand, null, listPrice);
     }
 
-    public Product(String name, String shortDescription, String brand, String category, double listPrice) {
-        this(name, shortDescription, brand, category, listPrice, -1.0);
+    public Product(String name, String shortDescription, double listPrice) {
+        this(name, shortDescription, null, listPrice);
+    }
+
+    public Product(String name, double listPrice) {
+        this(name, null, listPrice);
     }
 
     public String getName() {
@@ -88,5 +87,17 @@ public class Product {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", brand='" + brand + '\'' +
+                ", category='" + category + '\'' +
+                ", listPrice=" + listPrice +
+                ", cost=" + cost +
+                '}';
     }
 }

@@ -7,45 +7,46 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="1000.0" style="-fx-background-color: #e5f3ff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto.crud_java.Controller">
    <children>
-      <TableView layoutX="335.0" layoutY="97.0" prefHeight="431.0" prefWidth="613.0">
+      <TableView fx:id="table" layoutX="335.0" layoutY="97.0" prefHeight="431.0" prefWidth="613.0">
         <columns>
-          <TableColumn prefWidth="75.0" style="-fx-background-color: #0099dd;" text="Name" />
-          <TableColumn prefWidth="140.0" style="-fx-background-color: #00bbdd;" text="Short description" />
-            <TableColumn prefWidth="79.0" style="-fx-background-color: #0099dd;" text="Brand" />
-            <TableColumn prefWidth="114.0" style="-fx-background-color: #00bbdd;" text="Category" />
-            <TableColumn prefWidth="109.0" style="-fx-background-color: #0099dd;" text="List price" />
-            <TableColumn prefWidth="95.0" style="-fx-background-color: #00bbdd;" text="Cost (US$)" />
+          <TableColumn fx:id="nameCol" prefWidth="75.0" style="-fx-background-color: #0099dd;" text="Name" />
+          <TableColumn fx:id="shortDescriptionCol" prefWidth="140.0" style="-fx-background-color: #00bbdd;" text="Short description" />
+            <TableColumn fx:id="brandCol" prefWidth="79.0" style="-fx-background-color: #0099dd;" text="Brand" />
+            <TableColumn fx:id="categoryCol" prefWidth="114.0" style="-fx-background-color: #00bbdd;" text="Category" />
+            <TableColumn fx:id="listPriceCol" prefWidth="109.0" style="-fx-background-color: #0099dd;" text="List price" />
+            <TableColumn fx:id="costCol" prefWidth="95.0" style="-fx-background-color: #00bbdd;" text="Cost (US$)" />
         </columns>
       </TableView>
-      <TextField layoutX="150.0" layoutY="150.0" />
-      <TextField layoutX="150.0" layoutY="200.0" />
-      <TextField layoutX="150.0" layoutY="250.0" />
-      <TextField layoutX="150.0" layoutY="300.0" />
-      <TextField layoutX="150.0" layoutY="350.0" />
-      <TextField layoutX="150.0" layoutY="400.0" />
+      <TextField fx:id="prodName" layoutX="150.0" layoutY="150.0" />
+      <TextField fx:id="shortDescription" layoutX="150.0" layoutY="200.0" />
+      <TextField fx:id="brand" layoutX="150.0" layoutY="250.0" />
+      <TextField fx:id="category" layoutX="150.0" layoutY="300.0" />
+      <TextField fx:id="listPrice" layoutX="150.0" layoutY="350.0" />
+      <TextField fx:id="cost" layoutX="150.0" layoutY="400.0" />
       <Label layoutX="50.0" layoutY="150.0" text="Product Name" />
       <Label layoutX="50.0" layoutY="204.0" text="Short description" />
       <Label layoutX="79.0" layoutY="254.0" text="Brand" />
       <Label layoutX="71.0" layoutY="304.0" text="Category" />
       <Label layoutX="72.0" layoutY="354.0" text="List price" />
-      <Label layoutX="84.0" layoutY="404.0" text="Cost" />
+      <Label layoutX="83.0" layoutY="404.0" text="Cost" />
       <Button contentDisplay="CENTER" layoutX="225.0" layoutY="450.0" mnemonicParsing="false" style="-fx-background-color: #00aaff;" text="Delete" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button contentDisplay="CENTER" layoutX="150.0" layoutY="450.0" mnemonicParsing="false" style="-fx-background-color: #00aaff;" text="Update" textFill="#fafafa">
+      <Button contentDisplay="CENTER" layoutX="150.0" layoutY="450.0" mnemonicParsing="false" onAction="#update" style="-fx-background-color: #00aaff;" text="Update" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button contentDisplay="CENTER" layoutX="75.0" layoutY="450.0" mnemonicParsing="false" style="-fx-background-color: #00aaff;" text="Create" textFill="#fafafa">
+      <Button contentDisplay="CENTER" layoutX="75.0" layoutY="450.0" mnemonicParsing="false" onAction="#create" style="-fx-background-color: #00aaff;" text="Create" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextField layoutX="335.0" layoutY="51.0" promptText="Product Name" />
-      <Button contentDisplay="CENTER" layoutX="500.0" layoutY="51.0" mnemonicParsing="false" style="-fx-background-color: #00aaff;" text="Search" textFill="#fafafa">
+      <TextField fx:id="searchField" layoutX="335.0" layoutY="51.0" promptText="Product Name" />
+      <Button contentDisplay="CENTER" layoutX="500.0" layoutY="51.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: #00aaff;" text="Search" textFill="#fafafa">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -69,5 +70,24 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Label fx:id="errorMessage" layoutX="99.0" layoutY="505.0" text="An error occurred!" textFill="RED" visible="false">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></Label>
+      <Label fx:id="nameErrorMessage" layoutX="138.0" layoutY="135.0" text="Product Name can't be blank" textFill="RED" visible="false">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="listPriceValueErrorMessage" layoutX="141.0" layoutY="335.0" text="List Price can't be negative!" textFill="RED" visible="false">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="listPriceNullErrorMessage" layoutX="151.0" layoutY="335.0" text="List Price can't be blank!" textFill="RED" visible="false">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
