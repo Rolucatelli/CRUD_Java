@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Product {
 
+    private static HashSet<Integer> idSet = new HashSet<>();
     private int id;
     private String name;
     private String shortDescription;
@@ -15,7 +16,6 @@ public class Product {
     private double listPrice;
     private double cost;
     private String costString;
-    private static HashSet<Integer> idSet = new HashSet<>();
 
     public Product(int id, String name, String shortDescription, String brand, String category, double listPrice, double cost) throws IllegalArgumentException {
         if (name == null || name.isEmpty())

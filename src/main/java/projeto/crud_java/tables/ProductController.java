@@ -60,14 +60,12 @@ public class ProductController {
         if (!((newP.getShortDescription() == null && oldP.getShortDescription() == null))) {
             if (oldP.getShortDescription() == null) {
                 if (!(oldP.getShortDescription().equals(newP.getShortDescription()))) {
-                    if (!firstItem)
-                        sql.append(", ");
+                    if (!firstItem) sql.append(", ");
                     sql.append("shortDescription = \"").append(newP.getShortDescription()).append("\"");
                     firstItem = false;
                 }
             } else {
-                if (!firstItem)
-                    sql.append(", ");
+                if (!firstItem) sql.append(", ");
                 sql.append("shortDescription = null");
                 firstItem = false;
             }
@@ -76,14 +74,12 @@ public class ProductController {
         if (!((newP.getBrand() == null && oldP.getBrand() == null))) {
             if (oldP.getBrand() == null) {
                 if (!(oldP.getBrand().equals(newP.getBrand()))) {
-                    if (!firstItem)
-                        sql.append(", ");
+                    if (!firstItem) sql.append(", ");
                     sql.append("brand = \"").append(newP.getBrand()).append("\"");
                     firstItem = false;
                 }
             } else {
-                if (!firstItem)
-                    sql.append(", ");
+                if (!firstItem) sql.append(", ");
                 sql.append("brand = null");
                 firstItem = false;
             }
@@ -92,29 +88,25 @@ public class ProductController {
         if (!(newP.getCategory() == null && oldP.getCategory() == null)) {
             if (oldP.getCategory() == null) {
                 if (!(newP.getCategory().equals(oldP.getCategory()))) {
-                    if (!firstItem)
-                        sql.append(", ");
+                    if (!firstItem) sql.append(", ");
                     sql.append("category = \"").append(newP.getCategory()).append("\"");
                     firstItem = false;
                 }
             } else {
-                if (!firstItem)
-                    sql.append(", ");
+                if (!firstItem) sql.append(", ");
                 sql.append("category = null");
                 firstItem = false;
             }
         }
 
         if (oldP.getListPrice() != newP.getListPrice()) {
-            if (!firstItem)
-                sql.append(", ");
+            if (!firstItem) sql.append(", ");
             sql.append("listPrice = ").append(newP.getListPrice());
             firstItem = false;
         }
 
         if (!(oldP.getCost() == newP.getCost())) {
-            if (!firstItem)
-                sql.append(", ");
+            if (!firstItem) sql.append(", ");
             if (newP.getCost() < 0) {
                 sql.append("cost = null");
             } else {

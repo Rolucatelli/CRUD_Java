@@ -41,29 +41,23 @@ public class Controller implements Initializable {
     public TableColumn<Product, String> categoryCol = new TableColumn<>();
     public TableColumn<Product, Double> listPriceCol = new TableColumn<>();
     public TableColumn<Product, String> costCol = new TableColumn<>();
-
-    private ObservableList<Product> list = FXCollections.observableArrayList(loadTable());
-
-
     public Label errorMessage;
     public Label nameErrorMessage;
     public Label listPriceValueErrorMessage;
     public Label listPriceNullErrorMessage;
-
+    private final ObservableList<Product> list = FXCollections.observableArrayList(loadTable());
 
     public void create() {
         try {
             clearErrorMessages();
             if (listPrice.getText().isEmpty()) {
-                if (prodName.getText().isEmpty())
-                    throw new NullPointerException("both are empty");
+                if (prodName.getText().isEmpty()) throw new NullPointerException("both are empty");
                 throw new NullPointerException("listprice is empty");
             }
 
             double cst = cost.getText().isEmpty() ? -1.0 : Double.parseDouble(cost.getText());
 
-            Product product = new Product(Product.findNextId(), prodName.getText(), shortDescription.getText(), brand.getText(),
-                    category.getText(), Double.parseDouble(listPrice.getText()), cst);
+            Product product = new Product(Product.findNextId(), prodName.getText(), shortDescription.getText(), brand.getText(), category.getText(), Double.parseDouble(listPrice.getText()), cst);
 
             ProductController.insert(product);
             clearTextFields();
@@ -99,16 +93,14 @@ public class Controller implements Initializable {
         try {
             clearErrorMessages();
             if (listPrice.getText().isEmpty()) {
-                if (prodName.getText().isEmpty())
-                    throw new NullPointerException("both are empty");
+                if (prodName.getText().isEmpty()) throw new NullPointerException("both are empty");
                 throw new NullPointerException("listprice is empty");
             }
 
             double cst = cost.getText() == null ? -1.0 : Double.parseDouble(cost.getText());
 
             Product old = ProductController.consult(Integer.parseInt(id.getText()));
-            Product product = new Product(Integer.parseInt(id.getText()), prodName.getText(), shortDescription.getText(), brand.getText(),
-                    category.getText(), Double.parseDouble(listPrice.getText()), cst);
+            Product product = new Product(Integer.parseInt(id.getText()), prodName.getText(), shortDescription.getText(), brand.getText(), category.getText(), Double.parseDouble(listPrice.getText()), cst);
             ProductController.update(old, product);
             clearTextFields();
             reloadTable();
