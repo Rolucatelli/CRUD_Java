@@ -59,7 +59,7 @@ public class ProductController {
 
         if (!((newP.getShortDescription() == null && oldP.getShortDescription() == null))) {
             if (oldP.getShortDescription() == null) {
-                if (!(oldP.getShortDescription().equals(newP.getShortDescription()))) {
+                if (!(newP.getShortDescription().equals(oldP.getShortDescription()))) {
                     if (!firstItem) sql.append(", ");
                     sql.append("shortDescription = \"").append(newP.getShortDescription()).append("\"");
                     firstItem = false;
@@ -73,7 +73,7 @@ public class ProductController {
 
         if (!((newP.getBrand() == null && oldP.getBrand() == null))) {
             if (oldP.getBrand() == null) {
-                if (!(oldP.getBrand().equals(newP.getBrand()))) {
+                if (!(newP.getBrand().equals(oldP.getBrand()))) {
                     if (!firstItem) sql.append(", ");
                     sql.append("brand = \"").append(newP.getBrand()).append("\"");
                     firstItem = false;
